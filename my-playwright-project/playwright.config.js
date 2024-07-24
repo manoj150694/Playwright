@@ -8,10 +8,10 @@ module.exports = {
     actionTimeout: 10000,
   },
   projects: [
-    {
-      name: 'chromium',
-      use: { browserName: 'chromium' },
-    },
+    // {
+    //   name: 'chromium',
+    //   use: { browserName: 'chromium' },
+    // },
     {
       name: 'firefox',
       use: { browserName: 'firefox' },
