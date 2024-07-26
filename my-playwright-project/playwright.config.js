@@ -21,6 +21,8 @@ module.exports = {
     //   use: { browserName: 'webkit' },
     // },
   ],
+  video: 'on',
+  retries: 0,
    reporter: [
     ['html', { outputFolder: 'playwright-report', open: 'always' }],
   ],
