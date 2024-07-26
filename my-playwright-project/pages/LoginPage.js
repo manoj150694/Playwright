@@ -9,7 +9,7 @@
 exports.LoginPage = class LoginPage {
     constructor(page) {
         this.page = page;
-        this.btn_AcceptAll = page.getBytext('ACCEPT ALL')
+        this.btn_AcceptAll = page.locator('ACCEPT ALL')
         this.txt_FirstName = page.getByPlaceholder('First Name *')
         this.txt_LastName = page.getByPlaceholder('Last Name *')
         this.txt_BusinessEmail = page.getByPlaceholder('Business Email *')
@@ -21,8 +21,8 @@ exports.LoginPage = class LoginPage {
         this.drp_SelectTargetPlatform = page.locator(`xpath=//option[contains(text(),'Select Target Platform')]/..`)
         this.drp_SelectYourCountry = page.locator(`xpath=//option[contains(text(),'//option[contains(text(),'Select Your Country')]/..')]/..`)
         this.chbx_AgreeRanorex = page.locator(`xpath=//label[contains(text(),'I agree to the Ranorex ')]/..//following-sibling::input`)
-        this.chbx_ImnotRobot = page.getByClass('recaptcha-checkbox-border')
-        this.btn_Submit = page.getByClass('gform_button button')
+        this.chbx_ImnotRobot = page.locator('recaptcha-checkbox-border')
+        this.btn_Submit = page.locator('gform_button button')
     }
 
     async gotoLoginPage() {
