@@ -9,7 +9,7 @@
 exports.LoginPage = class LoginPage {
     constructor(page) {
         this.page = page;
-        this.btn_AcceptAll = page.locator('ACCEPT ALL')
+        this.btn_AcceptAll = page.locator('id=cookiescript_accept')
         this.txt_FirstName = page.getByPlaceholder('First Name *')
         this.txt_LastName = page.getByPlaceholder('Last Name *')
         this.txt_BusinessEmail = page.getByPlaceholder('Business Email *')
@@ -27,7 +27,9 @@ exports.LoginPage = class LoginPage {
 
     async gotoLoginPage() {
         await this.page.goto("https://www.ranorex.com/free-trial/")
-        await this.btn_AcceptAll.click()
+        await this.page.evaluate(() => window.scrollBy(0, 500));
+        //await this.btn_AcceptAll.waitFor({ state: 'visible' });
+        //await this.btn_AcceptAll.click()
     }
 
     async ranorexTrialAccountName(firstName,LastName) {

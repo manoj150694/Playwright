@@ -4,8 +4,8 @@ module.exports = {
   timeout: 300000,
   use: {
     headless: false,
-    viewport: { width: 1280, height: 720 },
-    actionTimeout: 10000,
+    viewport: { width: 1440, height: 900 },
+    actionTimeout: 30000,
   },
   projects: [
     {
@@ -20,5 +20,8 @@ module.exports = {
     //   name: 'webkit',
     //   use: { browserName: 'webkit' },
     // },
+  ],
+   reporter: [
+    ['html', { outputFolder: 'playwright-report', open: 'never' }],
   ],
 };
