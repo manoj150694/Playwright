@@ -16,7 +16,7 @@ exports.LoginPage = class LoginPage {
         this.txt_Company = page.getByPlaceholder('Company *')
         this.txt_JobTitle = page.getByPlaceholder('Job Title *')
         this.txt_Phone = page.getByPlaceholder('Phone *')
-        this.drp_SelectYourIndustry = page.locator(`xpath='//option[contains(text(),'Select Your Industry')]/..'`)
+        this.drp_SelectYourIndustry = page.locator(`xpath='//option[contains(text(),'Select Your Industry')]/../../..//following-sibling::div/select'`)
         this.drp_AreyouStudent = page.locator(`xpath=//option[contains(text(),'Are you a student?')]/..`)
         this.drp_SelectTargetPlatform = page.locator(`xpath=//option[contains(text(),'Select Target Platform')]/..`)
         this.drp_SelectYourCountry = page.locator(`xpath=//option[contains(text(),'//option[contains(text(),'Select Your Country')]/..')]/..`)
@@ -27,12 +27,15 @@ exports.LoginPage = class LoginPage {
 
     async gotoLoginPage() {
         await this.page.goto("https://www.ranorex.com/free-trial/")
-        await this.page.evaluate(() => window.scrollBy(0, 500));
-        //await this.btn_AcceptAll.waitFor({ state: 'visible' });
-        //await this.btn_AcceptAll.click()
+        await this.page.evaluate(() => window.scrollBy(0, 650));
+        if (await this.btn_AcceptAll.waitFor({ state: 'visible' } == true))
+        {
+            await this.btn_AcceptAll.click()
+        }
     }
 
-    async ranorexTrialAccountName(firstName,LastName) {
+    async ranorexTrialAccountName(firstName, LastName) {
+        await this.txt_FirstName.waitFor({ state: 'visible' });
         await this.txt_FirstName.fill(firstName)
         await this.txt_LastName.fill(LastName)
     }
@@ -49,11 +52,12 @@ exports.LoginPage = class LoginPage {
         await this.txt_Phone.fill(phoneNumber)
     }
 
-    async ranorex_IndustrynCountry(industryName,student,platformName,countryName) {
-        await this.drp_SelectYourIndustry.select_option(industryName)
-        await this.drp_AreyouStudent.select_option(student)
-        await this.drp_SelectTargetPlatform.select_option(platformName)
-        await this.drp_SelectYourCountry.select_option(countryName)
+    async ranorex_IndustrynCountry(industryName, student, platformName, countryName) {
+        await this.drp_SelectYourIndustry.click()
+        await this.drp_SelectYourIndustry.selectOption(industryName)
+        await this.drp_AreyouStudent.selectOption(student)
+        await this.drp_SelectTargetPlatform.selectOption(platformName)
+        await this.drp_SelectYourCountry.selectOption(countryName)
     }
 
     async clickOnCheckBox() {
