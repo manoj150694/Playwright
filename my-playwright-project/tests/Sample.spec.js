@@ -5,9 +5,9 @@ import { LoginPage} from '../pages/loginPage'
 test('Ranorex Studio trial - Account Setup', async ({ page }) => {
     const loginPage = new LoginPage(page)
     await loginPage.gotoLoginPage()
-    await loginPage.ranorexTrialAccountName()
+    await loginPage.ranorexTrialAccountName('ABCD','EFGH')
     await loginPage.ranorexTrialAccountEmailnCompany('Mailinator','Automation Analyst')
-    await loginPage.ranorexTrailAccountPhoneNumber()
+    await loginPage.ranorexTrailAccountPhoneNumber('07777777777')
     await loginPage.ranorex_IndustrynCountry('Software Vendor','No','Desktop','United Kingdom')
     await loginPage.clickOnCheckBox()
     await loginPage.clickOnSubmit()

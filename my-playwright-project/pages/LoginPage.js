@@ -9,6 +9,7 @@
 exports.LoginPage = class LoginPage {
     constructor(page) {
         this.page = page;
+        this.btn_AcceptAll = page.getBytext('ACCEPT ALL')
         this.txt_FirstName = page.getByPlaceholder('First Name *')
         this.txt_LastName = page.getByPlaceholder('Last Name *')
         this.txt_BusinessEmail = page.getByPlaceholder('Business Email *')
@@ -16,16 +17,17 @@ exports.LoginPage = class LoginPage {
         this.txt_JobTitle = page.getByPlaceholder('Job Title *')
         this.txt_Phone = page.getByPlaceholder('Phone *')
         this.drp_SelectYourIndustry = page.locator(`xpath='//option[contains(text(),'Select Your Industry')]/..'`)
-        this.drp_AreyouStudent = page.locator(`//option[contains(text(),'Are you a student?')]/..`)
-        this.drp_SelectTargetPlatform = page.locator(`//option[contains(text(),'Select Target Platform')]/..`)
-        this.drp_SelectYourCountry = page.locator(`//option[contains(text(),'//option[contains(text(),'Select Your Country')]/..')]/..`)
-        this.chbx_AgreeRanorex = page.locator(`//label[contains(text(),'I agree to the Ranorex ')]/..//following-sibling::input`)
+        this.drp_AreyouStudent = page.locator(`xpath=//option[contains(text(),'Are you a student?')]/..`)
+        this.drp_SelectTargetPlatform = page.locator(`xpath=//option[contains(text(),'Select Target Platform')]/..`)
+        this.drp_SelectYourCountry = page.locator(`xpath=//option[contains(text(),'//option[contains(text(),'Select Your Country')]/..')]/..`)
+        this.chbx_AgreeRanorex = page.locator(`xpath=//label[contains(text(),'I agree to the Ranorex ')]/..//following-sibling::input`)
         this.chbx_ImnotRobot = page.getByClass('recaptcha-checkbox-border')
         this.btn_Submit = page.getByClass('gform_button button')
     }
 
     async gotoLoginPage() {
         await this.page.goto("https://www.ranorex.com/free-trial/")
+        await this.btn_AcceptAll.click()
     }
 
     async ranorexTrialAccountName(firstName,LastName) {
@@ -33,13 +35,15 @@ exports.LoginPage = class LoginPage {
         await this.txt_LastName.fill(LastName)
     }
 
-    async ranorexTrialAccountEmailnCompany(companyName,jobTitle) {
+    async ranorexTrialAccountEmailnCompany(companyName, jobTitle) {
+        let randomNum = Math.random();
+        const businessEmail = "Tekstac"+randomNum+"@mailinator.com"
         await this.txt_BusinessEmail.fill(businessEmail)
         await this.txt_Company.fill(companyName)
         await this.txt_JobTitle.fill(jobTitle)
     }
 
-    async ranorexTrailAccountPhoneNumber() {
+    async ranorexTrailAccountPhoneNumber(phoneNumber) {
         await this.txt_Phone.fill(phoneNumber)
     }
 
@@ -57,6 +61,4 @@ exports.LoginPage = class LoginPage {
     async clickOnSubmit() {
         await this.btn_Submit.click()
     }
-
-
 }
