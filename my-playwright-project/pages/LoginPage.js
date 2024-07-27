@@ -1,5 +1,5 @@
-// import { faker } from '@faker-js/faker';
-// const { faker } = require('@faker-js/faker');
+const { test, expect } = require('@playwright/test');
+const { faker } = require('@faker-js/faker');
 
 // const firstName = faker.name.findName()
 // const LastName = faker.name.findName()
@@ -9,22 +9,25 @@
 exports.LoginPage = class LoginPage {
     constructor(page) {
         this.page = page;
-        this.btn_AcceptAll = page.locator('id=cookiescript_accept')
-        this.productBtn = page.locator("//a[contains(text(),'Products')])[1]")
-        this.txt_FirstName = page.getByPlaceholder('First Name *')
+        this.loginSignUpBtn = page.locator('//a[contains(text(),"Signup / Login")]')
+        this.consent_btn = page.locator('//p[contains(text(),"Consent")]')
+        this.enterUserName = page.locator('[placeholder="Name"]')
+        this.userEmail = page.locator('[data-qa="signup-email"]')
+        this.signUpBtn = page.locator('[data-qa="signup-button"]')
+        this.txt_FirstName = page.getByPlaceholder('Name *')
         this.txt_LastName = page.getByPlaceholder('Last Name *')
         this.txt_BusinessEmail = page.getByPlaceholder('Business Email *')
         this.txt_Company = page.getByPlaceholder('Company *')
         this.txt_JobTitle = page.getByPlaceholder('Job Title *')
         this.txt_Phone = page.getByPlaceholder('Phone *')
-        this.drp_SelectYourIndustry = page.locator('//option[contains(text(),"Select Your Industry")]/../../..//following-sibling::div/select/option[contains(text(),"Consulting")]')
+        this.drp_SelectYourIndustry = page.locator('//option[contains(text(),"Select Your Industry")]/../../..//following-sibling::div/select')
         this.drp_AreyouStudent = page.locator('//option[contains(text(),"Are you a student?")]')
         this.drp_SelectTargetPlatform = page.locator(`xpath=//option[contains(text(),'Select Target Platform')]/..`)
         this.drp_SelectYourCountry = page.locator(`xpath=//option[contains(text(),'//option[contains(text(),'Select Your Country')]/..')]/..`)
         this.chbx_AgreeRanorex = page.locator(`xpath=//label[contains(text(),'I agree to the Ranorex ')]/..//following-sibling::input`)
         this.chbx_ImnotRobot = page.locator('recaptcha-checkbox-border')
         this.btn_Submit = page.locator('gform_button button')
-        this.signUpBtn = page.locator('//a[contains(text(),"Signup / Login")]')
+        
     }
 
     async gotoLoginPage() {
@@ -37,6 +40,16 @@ exports.LoginPage = class LoginPage {
 
     async gotoSignUpPage() {
         await this.page.goto("https://automationexercise.com/")
+        await this.consent_btn.click()
+        await this.loginSignUpBtn.click()
+    }
+
+    async newUserID() {
+        let randomNum = Math.random();
+        const businessEmail = "Tekstac" + randomNum + "@mailinator.com"
+        const randomUsername = faker.internet.userName();
+        await this.enterUserName.fill(randomUsername)
+        await this.userEmail.fill(businessEmail)
         await this.signUpBtn.click()
     }
 
@@ -60,7 +73,7 @@ exports.LoginPage = class LoginPage {
 
     async ranorex_IndustrynCountry(industryName, student, platformName, countryName) {
         await this.drp_SelectYourIndustry.click()
-        await this.drp_SelectYourIndustry.selectOption(industryName)
+        await this.drp_SelectYourIndustry.selectOption('value',industryName)
         await this.drp_AreyouStudent.click()
         await this.drp_AreyouStudent.selectOption({ label: student })
         await this.drp_SelectTargetPlatform.selectOption(platformName)

@@ -8,7 +8,7 @@ test('Ranorex Studio trial - Account Setup', async ({ page }) => {
     await loginPage.ranorexTrialAccountName('ABCD','EFGH')
     await loginPage.ranorexTrialAccountEmailnCompany('Mailinator','Automation Analyst')
     await loginPage.ranorexTrailAccountPhoneNumber('07777777777')
-    await loginPage.ranorex_IndustrynCountry('Software Vendor','No','Desktop','United Kingdom')
+   // await loginPage.ranorex_IndustrynCountry('Software Vendor','No','Desktop','United Kingdom')
     await loginPage.clickOnCheckBox()
     await loginPage.clickOnSubmit()
 });
