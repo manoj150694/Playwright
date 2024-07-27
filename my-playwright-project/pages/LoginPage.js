@@ -1,10 +1,9 @@
-const { expect } = require("@playwright/test")
-const { BasePage } = require("./BasePage");
+const { expect } = require("@playwright/test");
 
-exports.LoginPage = class LoginPage extends BasePage{
+exports.LoginPage = class LoginPage{
     constructor(page) {
         this.page = page;
-        this.loginSignUpBtn = page.locator('//a[contains(text(),"Signup / Login")]')
+        this.loginSignUpBtn = page.locator(`xpath=//a[contains(text(),"Signup / Login")]`)
         this.consentBtn = page.locator('//p[contains(text(),"Consent")]')
         this.enterUserName = page.locator('[placeholder="Name"]')
         this.userEmail = page.locator('[data-qa="signup-email"]')
@@ -41,13 +40,13 @@ exports.LoginPage = class LoginPage extends BasePage{
         
     }
 
-    static async gotoSignUpPage() {
+    async gotoSignUpPage() {
         await this.page.goto("https://automationexercise.com/")
         await this.consentBtn.click()
         await this.loginSignUpBtn.click()
     }
 
-    static async newUserID() {
+    async newUserID() {
         let randomNum = Math.random();
         const businessEmail = "Tekstac" + randomNum + "@mailinator.com"
         //const randomUsername = faker.internet.userName();
@@ -56,7 +55,7 @@ exports.LoginPage = class LoginPage extends BasePage{
         await this.signUpBtn.click()
     }
 
-    static async enterAccountInformation(date,month,year) {
+    async enterAccountInformation(date,month,year) {
         //const randomPassword = faker.internet.password(12, true, /[A-Z]/, '!', 'Passw0rd');
         await this.selectMr.click()
         await this.userPassword.fill('Passw0rd123')
@@ -77,7 +76,7 @@ exports.LoginPage = class LoginPage extends BasePage{
         await this.mobileNumberTxtBx.fill('9898787765')
     }
 
-    static async clickOnCreateAccount() {
+    async clickOnCreateAccount() {
          await this.createAccountBtn.click()
     }
 
