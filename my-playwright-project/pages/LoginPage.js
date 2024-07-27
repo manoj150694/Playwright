@@ -10,28 +10,34 @@ exports.LoginPage = class LoginPage {
     constructor(page) {
         this.page = page;
         this.btn_AcceptAll = page.locator('id=cookiescript_accept')
+        this.productBtn = page.locator("//a[contains(text(),'Products')])[1]")
         this.txt_FirstName = page.getByPlaceholder('First Name *')
         this.txt_LastName = page.getByPlaceholder('Last Name *')
         this.txt_BusinessEmail = page.getByPlaceholder('Business Email *')
         this.txt_Company = page.getByPlaceholder('Company *')
         this.txt_JobTitle = page.getByPlaceholder('Job Title *')
         this.txt_Phone = page.getByPlaceholder('Phone *')
-        this.drp_SelectYourIndustry = page.locator(`xpath='//option[contains(text(),'Select Your Industry')]/../../..//following-sibling::div/select'`)
-        this.drp_AreyouStudent = page.locator(`xpath=//option[contains(text(),'Are you a student?')]/..`)
+        this.drp_SelectYourIndustry = page.locator('//option[contains(text(),"Select Your Industry")]/../../..//following-sibling::div/select/option[contains(text(),"Consulting")]')
+        this.drp_AreyouStudent = page.locator('//option[contains(text(),"Are you a student?")]')
         this.drp_SelectTargetPlatform = page.locator(`xpath=//option[contains(text(),'Select Target Platform')]/..`)
         this.drp_SelectYourCountry = page.locator(`xpath=//option[contains(text(),'//option[contains(text(),'Select Your Country')]/..')]/..`)
         this.chbx_AgreeRanorex = page.locator(`xpath=//label[contains(text(),'I agree to the Ranorex ')]/..//following-sibling::input`)
         this.chbx_ImnotRobot = page.locator('recaptcha-checkbox-border')
         this.btn_Submit = page.locator('gform_button button')
+        this.signUpBtn = page.locator('//a[contains(text(),"Signup / Login")]')
     }
 
     async gotoLoginPage() {
         await this.page.goto("https://www.ranorex.com/free-trial/")
         await this.page.evaluate(() => window.scrollBy(0, 650));
-        if (await this.btn_AcceptAll.waitFor({ state: 'visible' } == true))
-        {
-            await this.btn_AcceptAll.click()
-        }
+        await this.page.locator('//a[contains(text(),"Products")][1]').dblclick();
+        await this.page.waitForTimeout(2000);
+        await this.btn_AcceptAll.click()
+    }
+
+    async gotoSignUpPage() {
+        await this.page.goto("https://automationexercise.com/")
+        await this.signUpBtn.click()
     }
 
     async ranorexTrialAccountName(firstName, LastName) {
@@ -55,7 +61,8 @@ exports.LoginPage = class LoginPage {
     async ranorex_IndustrynCountry(industryName, student, platformName, countryName) {
         await this.drp_SelectYourIndustry.click()
         await this.drp_SelectYourIndustry.selectOption(industryName)
-        await this.drp_AreyouStudent.selectOption(student)
+        await this.drp_AreyouStudent.click()
+        await this.drp_AreyouStudent.selectOption({ label: student })
         await this.drp_SelectTargetPlatform.selectOption(platformName)
         await this.drp_SelectYourCountry.selectOption(countryName)
     }
