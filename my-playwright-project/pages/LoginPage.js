@@ -14,6 +14,8 @@ exports.LoginPage = class LoginPage {
         this.enterUserName = page.locator('[placeholder="Name"]')
         this.userEmail = page.locator('[data-qa="signup-email"]')
         this.signUpBtn = page.locator('[data-qa="signup-button"]')
+        this.selectMr = page.locator('[value="Mr"]')
+        this.userPassword = page.locator('[id="password"]')
         this.txt_FirstName = page.getByPlaceholder('Name *')
         this.txt_LastName = page.getByPlaceholder('Last Name *')
         this.txt_BusinessEmail = page.getByPlaceholder('Business Email *')
@@ -30,14 +32,6 @@ exports.LoginPage = class LoginPage {
         
     }
 
-    async gotoLoginPage() {
-        await this.page.goto("https://www.ranorex.com/free-trial/")
-        await this.page.evaluate(() => window.scrollBy(0, 650));
-        await this.page.locator('//a[contains(text(),"Products")][1]').dblclick();
-        await this.page.waitForTimeout(2000);
-        await this.btn_AcceptAll.click()
-    }
-
     async gotoSignUpPage() {
         await this.page.goto("https://automationexercise.com/")
         await this.consent_btn.click()
@@ -51,6 +45,20 @@ exports.LoginPage = class LoginPage {
         await this.enterUserName.fill(randomUsername)
         await this.userEmail.fill(businessEmail)
         await this.signUpBtn.click()
+    }
+
+    async enterAccountInformation() {
+        const randomPassword = faker.internet.password(12, true, /[A-Z]/, '!', 'Passw0rd');
+        await this.selectMr.click()
+        await this.userPassword.fill(randomPassword)
+    }
+
+    async gotoLoginPage() {
+        await this.page.goto("https://www.ranorex.com/free-trial/")
+        await this.page.evaluate(() => window.scrollBy(0, 650));
+        await this.page.locator('//a[contains(text(),"Products")][1]').dblclick();
+        await this.page.waitForTimeout(2000);
+        await this.btn_AcceptAll.click()
     }
 
     async ranorexTrialAccountName(firstName, LastName) {
