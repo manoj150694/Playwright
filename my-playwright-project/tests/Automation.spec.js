@@ -1,5 +1,5 @@
 //***importing the playwright library from node_modules and assinging to test package***
-//const { test, expect } = require('@playwright/test')
+
 const { test,expect } = require('./fixtures/basePage')
 import { LoginPage } from '../pages/loginPage'
 import { AccountCreationPage } from '../pages/AccountCreationPage'
