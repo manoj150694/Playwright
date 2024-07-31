@@ -4,6 +4,8 @@
 
 Ensure you have the latest version of `Node.js` installed on your machine. You can download and install it from the official Node.js website. Make sure Node.js is configured in the environment variable path settings.
 
+Url: `https://nodejs.org/en/download/prebuilt-installer/current`
+
 2. Create a new project directory in git and navigate into it
 
 `mkdir my-playwright-project`
