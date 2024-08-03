@@ -6,7 +6,7 @@ Ensure you have the latest version of `Node.js` installed on your machine. You c
 
 Url: `https://nodejs.org/en/download/prebuilt-installer/current`
 
-2. Create a new project directory in git and navigate into it
+2. Create a new project directory in git and navigate into it, then run the below commands
 
 `mkdir my-playwright-project`
 `cd my-playwright-project`
@@ -17,9 +17,9 @@ Url: `https://nodejs.org/en/download/prebuilt-installer/current`
 
 This will create a package.json file in your project directory.
 
-4. Install Playwright and its testing library:
+4. Install Playwright and its testing library (use the recommended settings):
 
-`npm install playwright`
+`npm install playwright` 
 
 5. Playwright can automatically install the required browsers (Chromium, Firefox, and WebKit) with the following command:
 
