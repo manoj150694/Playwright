@@ -32,3 +32,13 @@ This will create a package.json file in your project directory.
 7. Run your tests using the configuration file:
 
 `npx playwright test --config=playwright.config.js`
+
+8. You need to have Allure commandline and Allure reporter package for Playwright installed on your machine. You can install it using npm:
+
+`npm install -g allure-commandline --save-dev`
+`npm install --save-dev @playwright/test allure-playwright`
+
+9. To open allure report:
+ `npx allure generate ./allure-results --clean`
+ `npx allure open ./allure-report`
+ 
