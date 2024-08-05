@@ -25,8 +25,7 @@ module.exports = {
   ],
   retries: 0,
    reporter: [
-     //['html', { outputFolder: 'playwright-report', open: 'always' }],
-     ['list'],
-     ['allure-playwright', { outputFolder: 'my-allure-results' }],
+    //  ['html', { outputFolder: 'playwright-report', open: 'always' }],
+    ['allure-playwright', { outputFolder: 'playwright-report', open: 'always' }],
   ],
 };

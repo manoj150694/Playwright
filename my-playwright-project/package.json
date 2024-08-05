@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/Sample.spec.js"
+    "test": "npx playwright test",
+    "generate-report": "allure generate ./allure-results -o ./allure-report --clean",
+    "open-report": "allure open ./allure-report",
+    "test-and-open-report": "npm run test && npm run generate-report && npm run open-report"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +16,7 @@
     "@faker-js/faker": "^8.4.1",
     "@playwright/test": "^1.45.3",
     "@types/node": "^20.14.12",
+    "allure-commandline": "^2.30.0",
     "allure-playwright": "^3.0.0-beta.7"
   },
   "dependencies": {

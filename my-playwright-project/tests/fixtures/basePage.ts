@@ -1,6 +1,6 @@
 //import { test as base } from '@playwright/test';
 const base = require('@playwright/test')
-import { LoginPage } from '../../pages/LoginPage';
+import { LoginPage } from '../../pages/loginPage';
 import { AccountCreationPage } from '../../pages/AccountCreationPage';
 import { ProductDescriptionPage } from '../../pages/ProductDescriptionPage';
 

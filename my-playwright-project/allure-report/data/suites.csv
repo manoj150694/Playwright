@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Automation exercise - Account Setup","14253","Automation exercise - Account Setup","chromium","Mon Aug 05 17:41:15 BST 2024","failed","Mon Aug 05 17:41:29 BST 2024","","Automation.spec.js","",""
+"Login into Account - Add and Delete Products in Cart","14286","Login into Account - Add and Delete Products in Cart","chromium","Mon Aug 05 17:41:15 BST 2024","failed","Mon Aug 05 17:41:29 BST 2024","","Automation.spec.js","",""

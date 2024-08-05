@@ -1,0 +1,1 @@
+[{"uid":"f7e1d4c69dcf6b43","name":"Automation exercise - Account Setup","time":{"start":1722876075566,"stop":1722876089819,"duration":14253},"status":"failed","severity":"critical"},{"uid":"a3c6de857e341213","name":"Login into Account - Add and Delete Products in Cart","time":{"start":1722876075521,"stop":1722876089807,"duration":14286},"status":"failed","severity":"normal"}]
