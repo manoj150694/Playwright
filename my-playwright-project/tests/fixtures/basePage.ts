@@ -1,7 +1,8 @@
 //import { test as base } from '@playwright/test';
 const base = require('@playwright/test')
-import { LoginPage } from '../../pages/loginPage';
+import { LoginPage } from '../../pages/LoginPage';
 import { AccountCreationPage } from '../../pages/AccountCreationPage';
+import { ProductDescriptionPage } from '../../pages/ProductDescriptionPage';
 
 exports.test = base.test.extend({
     loginPage: async ({ page }, use) => {
@@ -11,6 +12,10 @@ exports.test = base.test.extend({
     accountCreationPage: async ({ page }, use) => {
         const accountCreationPage = new AccountCreationPage(page);
         await use(accountCreationPage);
+    },
+    productDescriptionPage: async ({ page }, use) => {
+        const productDescriptionPage = new ProductDescriptionPage(page);
+        await use(productDescriptionPage);
     },
 });
 exports.expect = base.expect;

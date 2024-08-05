@@ -1,6 +1,5 @@
 const { expect } = require("@playwright/test");
-const { faker } = require('@faker-js/faker');
-
+//const { faker } = require('@faker-js/faker');
 exports.LoginPage = class LoginPage{
     constructor(page) {
         this.page = page;
@@ -8,6 +7,9 @@ exports.LoginPage = class LoginPage{
         this.consentBtn = page.locator('//p[contains(text(),"Consent")]')
         this.enterUserName = page.locator('[placeholder="Name"]')
         this.userEmail = page.locator('[data-qa="signup-email"]')
+        this.loginEmail = page.locator('[data-qa="login-email"]')
+        this.loginPassword = page.locator('[data-qa="login-password"]')
+        this.loginBtn = page.locator('[data-qa="login-button"]')
         this.signUpBtn = page.locator('[data-qa="signup-button"]')
         this.selectMr = page.locator('[value="Mr"]')
         this.userPassword = page.locator('[id="password"]')
@@ -26,25 +28,32 @@ exports.LoginPage = class LoginPage{
         this.createAccountBtn = page.locator(`xpath=//button[contains(text(),'Create Account')]`) 
     }
 
-    async gotoSignUpPage() {
+    
+    async gotoSignUp_Login_Page() {
         await this.page.goto("https://automationexercise.com/")
         await this.consentBtn.click()
         await this.loginSignUpBtn.click()
     }
 
+    async loginAccount(emailAddress,password) {
+        await this.loginEmail.fill(emailAddress);
+        await this.loginPassword.fill(password);
+        await this.loginBtn.click();
+    }
+
     async newUserID() {
         let randomNum = Math.random();
         const businessEmail = "Tekstac" + randomNum + "@mailinator.com"
-        const randomUsername = faker.internet.userName();
-        await this.enterUserName.fill(randomUsername)
+      //  const randomUsername = faker.internet.userName();
+        await this.enterUserName.fill("RanMano"+randomNum)
         await this.userEmail.fill(businessEmail)
         await this.signUpBtn.click()
     }
 
     async enterAccountInformation(date,month,year) {
-       const randomPassword = faker.internet.password(12, true, /[A-Z]/, '!', 'Passw0rd');
+       //const randomPassword = faker.internet.password(12, true, /[A-Z]/, '!', 'Passw0rd');
         await this.selectMr.click()
-        await this.userPassword.fill(randomPassword)
+        await this.userPassword.fill("Password@123")
         await this.dayDrp.click()
         await this.dayDrp.selectOption(date)
         await this.monthDrp.click()
@@ -65,5 +74,4 @@ exports.LoginPage = class LoginPage{
     async clickOnCreateAccount() {
          await this.createAccountBtn.click()
     }
-
 }

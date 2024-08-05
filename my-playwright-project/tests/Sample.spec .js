@@ -1,6 +1,6 @@
 //***importing the playwright library from node_modules and assinging to test package***
 const { test, expect } = require('@playwright/test')
-import { LoginPage} from '../pages/loginPage'
+import { LoginPage} from '../pages/LoginPage'
 
 test('Ranorex Studio trial - Account Setup', async ({ page }) => {
     const loginPage = new LoginPage(page)

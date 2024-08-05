@@ -12,6 +12,7 @@ module.exports = {
     {
       name: 'chromium',
       use: { browserName: 'chromium' },
+      fullyParallel: false,
     },
     // {
     //   name: 'firefox',
