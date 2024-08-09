@@ -1,6 +1,7 @@
 //***importing the playwright library from node_modules and assinging to test package***
 const { test, expect } = require('./fixtures/basePage');
 const { allure } = require('allure-playwright');
+
 import { LoginPage } from '../pages/loginPage'
 import { AccountCreationPage } from '../pages/AccountCreationPage'
 import { ProductDescriptionPage } from '../pages/ProductDescriptionPage'

@@ -1,5 +1,5 @@
 const { expect } = require("@playwright/test");
-//const { faker } = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker');
 exports.LoginPage = class LoginPage{
     constructor(page) {
         this.page = page;
@@ -44,14 +44,14 @@ exports.LoginPage = class LoginPage{
     async newUserID() {
         let randomNum = Math.random();
         const businessEmail = "Tekstac" + randomNum + "@mailinator.com"
-      //  const randomUsername = faker.internet.userName();
+        const randomUsername = faker.internet.userName();
         await this.enterUserName.fill("RanMano"+randomNum)
         await this.userEmail.fill(businessEmail)
         await this.signUpBtn.click()
     }
 
     async enterAccountInformation(date,month,year) {
-       //const randomPassword = faker.internet.password(12, true, /[A-Z]/, '!', 'Passw0rd');
+        const randomPassword = faker.internet.password(12, true, /[A-Z]/, '!', 'Passw0rd');
         await this.selectMr.click()
         await this.userPassword.fill("Password@123")
         await this.dayDrp.click()
