@@ -13,19 +13,20 @@ module.exports = {
       use: { browserName: 'chromium' },
       fullyParallel: false,
     },
-    // {
-    //   name: 'firefox',
-    //   use: { browserName: 'firefox' },
-    // },
+    {
+      name: 'firefox',
+      use: { browserName: 'firefox' },
+    },
     // {
     //   name: 'webkit',
     //   use: { browserName: 'webkit' },
     // },
   ],
-  retries: 0,
-   reporter: [
+  retries: 1,
+  reporter: [
     //['html', { outputFolder: 'playwright-report', open: 'always' }],
-     ['list'],
-     ['allure-playwright', { outputFolder: 'my-allure-results' }],
+    ['list'],
+    ['allure-playwright', { outputFolder: 'allure-report' }],
   ],
+  globalTeardown: require.resolve('./teardown.js'),
 };
