@@ -1,4 +1,3 @@
-const { expect } = require("@playwright/test");
 //const { faker } = require('@faker-js/faker');
 exports.LoginPage = class LoginPage{
     constructor(page) {

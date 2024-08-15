@@ -1,4 +1,3 @@
-// playwright.config.js
 module.exports = {
   testDir: './tests',
   timeout: 300000,
@@ -25,7 +24,8 @@ module.exports = {
   ],
   retries: 0,
    reporter: [
-    //  ['html', { outputFolder: 'playwright-report', open: 'always' }],
-    ['allure-playwright', { outputFolder: 'playwright-report', open: 'always' }],
+    //['html', { outputFolder: 'playwright-report', open: 'always' }],
+     ['list'],
+     ['allure-playwright', { outputFolder: 'my-allure-results' }],
   ],
 };

@@ -8,6 +8,5 @@ exports.AccountCreationPage = class AccountCreationPage{
 
     async validateAccountCreation() {
         await expect(this.msg_AccountCreation).toHaveText('Account Created!');
-        await this.btn_Continue.click();
     }
 }
