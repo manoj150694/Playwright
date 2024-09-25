@@ -1,4 +1,6 @@
 const { expect } = require("@playwright/test");
+import { allure }  from 'allure-playwright';
+
 exports.AccountCreationPage = class AccountCreationPage{
     constructor(page) {
         this.page = page;
@@ -7,6 +9,8 @@ exports.AccountCreationPage = class AccountCreationPage{
     }
 
     async validateAccountCreation() {
+        await allure.step('Validate the New Account is created successfully', async () => {
         await expect(this.msg_AccountCreation).toHaveText('Account Created!');
+        });
     }
 }

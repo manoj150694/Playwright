@@ -1,4 +1,6 @@
 const { expect } = require("@playwright/test");
+import { allure }  from 'allure-playwright';
+
 exports.ProductDescriptionPage = class ProductDescriptionPage {
     constructor(page) {
         this.page = page;
@@ -11,12 +13,20 @@ exports.ProductDescriptionPage = class ProductDescriptionPage {
     }
 
     async selectCategoryMens() {
+        await allure.step('Select the Mens Category', async () => {
         await this.page.plusBtn_Men.click();
         await this.page.category_MenTshirts.click();
+        const screenshot = await this.page.screenshot();
+        await allure.attachment('Screenshot', screenshot, 'image/png');
+        });
     }
 
     async addProductToCart() {
+        await allure.step('Adding Products to the Cart', async () => {
         await this.page.lbl_AddToCart.hover();
         await this.page.overlay_AddToCart.click();
+        const screenshot = await this.page.screenshot();
+        await allure.attachment('Screenshot', screenshot, 'image/png');
+        });
     }
 }

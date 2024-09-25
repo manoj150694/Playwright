@@ -5,6 +5,8 @@ module.exports = async () => {
     // Generate the Allure report
     //For Mac
     //execSync('rm -rf allure-report', { stdio: 'inherit' });
+    //execSync('allure generate allure-results --clean', { stdio: 'inherit' });
+
     //For windows
     execSync('rmdir /s /q allure-report', { stdio: 'inherit' });
     execSync('allure generate allure-results --clean', { stdio: 'inherit' });

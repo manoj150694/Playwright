@@ -1,4 +1,5 @@
 //const { faker } = require('@faker-js/faker');
+import { allure }  from 'allure-playwright';
 
 exports.LoginPage = class LoginPage{
     constructor(page) {
@@ -30,27 +31,40 @@ exports.LoginPage = class LoginPage{
 
     
     async gotoSignUp_Login_Page() {
+        await allure.step('Navigating to the Automation Exercise URL and Clicking on SignUp Button', async () => {
         await this.page.goto("https://automationexercise.com/")
         await this.consentBtn.click()
         await this.loginSignUpBtn.click()
+        const screenshot = await this.page.screenshot();
+        await allure.attachment('Screenshot', screenshot, 'image/png');
+        });
     }
 
     async loginAccount(emailAddress,password) {
+        await allure.step('Login into My Account with Username as '+emailAddress, async () => {
         await this.loginEmail.fill(emailAddress);
         await this.loginPassword.fill(password);
+        const screenshot = await this.page.screenshot();
+        await allure.attachment('Screenshot', screenshot, 'image/png');
         await this.loginBtn.click();
+        });
     }
 
     async newUserID() {
+        await allure.step('Validating the New Account Creation', async () => {
         let randomNum = Math.random();
         const businessEmail = "Tekstac" + randomNum + "@mailinator.com"
         //const randomUsername = faker.internet.userName();
         await this.enterUserName.fill("RanMano"+randomNum)
         await this.userEmail.fill(businessEmail)
+        const screenshot = await this.page.screenshot();
+        await allure.attachment('Screenshot', screenshot, 'image/png');
         await this.signUpBtn.click()
+        });
     }
 
     async enterAccountInformation(date,month,year) {
+        await allure.step('Update the Mandatory Attributes for New Account Creation', async () => {
         //const randomPassword = faker.internet.password(12, true, /[A-Z]/, '!', 'Passw0rd');
         await this.selectMr.click()
         await this.userPassword.fill("Password@123")
@@ -69,9 +83,16 @@ exports.LoginPage = class LoginPage{
         await this.cityTxtBx.fill('Chennai')
         await this.zipCodeTxtBx.fill('600001')
         await this.mobileNumberTxtBx.fill('9898787765')
+        const screenshot = await this.page.screenshot();
+        await allure.attachment('Screenshot', screenshot, 'image/png');
+        });
     }
 
     async clickOnCreateAccount() {
-         await this.createAccountBtn.click()
+        await allure.step('Click the Create Account Button', async () => {
+        await this.createAccountBtn.click()
+        const screenshot = await this.page.screenshot();
+        await allure.attachment('Screenshot', screenshot, 'image/png');
+        });
     }
 }
